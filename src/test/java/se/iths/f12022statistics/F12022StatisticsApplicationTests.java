@@ -6,8 +6,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class F12022StatisticsApplicationTests {
 
-    @Test
-    void contextLoads() {
-    }
+   // @Test
+   // void contextLoads() {
+   // }
 
 }
