@@ -65,9 +65,6 @@ public class F12022StatisticsApplication {
 
 
 
-
-            driverRepository.save(new Driver("FERNANDO ALONSO", 23));
-
             teamRepository.save(new Team("RedBull Racing", "RedBull power unit",
                     redBullDrivers, new Boss("Christian Horner", 50, 7 )));
 
