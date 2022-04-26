@@ -14,15 +14,35 @@ import java.util.ArrayList;
 @SpringBootApplication
 public class F12022StatisticsApplication {
 
-
-
+   /* public F12022StatisticsApplication(TeamService teamService) {
+        this.teamService = teamService;
+    }
+*/
     public static void main(String[] args) {
         SpringApplication.run(F12022StatisticsApplication.class, args);
     }
 
 
 
+    /* Method to autofill database with data if empty
+    private final TeamService teamService;
++
+    @EventListener(ApplicationReadyEvent.class)
+    public void fillDatabase(){
+
+        Boss christianHorner = new Boss("Christian Horner",
+                48,
+                17);
 
 
 
+        Driver maxVerstappen = new Driver("Max Verstappen",
+                24,
+                )
+
+
+
+
+    }
+*/
 }

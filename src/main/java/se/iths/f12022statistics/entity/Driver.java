@@ -12,19 +12,16 @@ public class Driver {
     private Long id;
     private String name;
     private int age;
-    @ManyToOne
-    private Team team;
-    @ManyToMany
-    private List<Race> raceList;
+
+    //@ManyToMany
+    //private List<Race> raceList;
 
     public Driver() {
     }
 
-    public Driver(String name, int age, Team team, List<Race> raceList) {
+    public Driver(String name, int age) {
         this.name = name;
         this.age = age;
-        this.team = team;
-        this.raceList = raceList;
     }
 
     public Long getId() {
@@ -45,14 +42,6 @@ public class Driver {
 
     public void setAge(int age) {
         this.age = age;
-    }
-
-    public Team getTeam() {
-        return team;
-    }
-
-    public void setTeam(Team team) {
-        this.team = team;
     }
 
     public List<Race> getRaceList() {

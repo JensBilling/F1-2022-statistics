@@ -12,17 +12,16 @@ public class Boss {
     private String name;
     private int age;
     private int yearsAsTeamBoss;
-    @OneToOne
-    private Team team;
+
 
     public Boss() {
     }
 
-    public Boss(String name, int age, int yearsAsTeamBoss, Team team) {
+    public Boss(String name, int age, int yearsAsTeamBoss) {
         this.name = name;
         this.age = age;
         this.yearsAsTeamBoss = yearsAsTeamBoss;
-        this.team = team;
+
     }
 
     public Long getId() {
@@ -51,13 +50,5 @@ public class Boss {
 
     public void setYearsAsTeamBoss(int yearsAsTeamBoss) {
         this.yearsAsTeamBoss = yearsAsTeamBoss;
-    }
-
-    public Team getTeam() {
-        return team;
-    }
-
-    public void setTeam(Team team) {
-        this.team = team;
     }
 }
