@@ -13,7 +13,7 @@ public class Race {
     private String trackName;
     private double trackDistance;
     private Long driverIdOfFastestLap;
-    @ManyToMany
+    @ManyToMany (cascade=CascadeType.ALL)
     private List<Driver> raceResults;
 
     public Race() {
