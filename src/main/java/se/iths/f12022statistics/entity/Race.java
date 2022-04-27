@@ -2,6 +2,7 @@ package se.iths.f12022statistics.entity;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -13,13 +14,13 @@ public class Race {
     private String trackName;
     private double trackDistance;
     private Long driverIdOfFastestLap;
-    @ManyToMany (cascade=CascadeType.ALL)
-    private List<Driver> raceResults;
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<RaceResult> raceResults = new ArrayList<>();
 
     public Race() {
     }
 
-    public Race(String trackName, double trackDistance, Long driverIdOfFastestLap, List<Driver> raceResults) {
+    public Race(String trackName, double trackDistance, Long driverIdOfFastestLap, List<RaceResult> raceResults) {
         this.trackName = trackName;
         this.trackDistance = trackDistance;
         this.driverIdOfFastestLap = driverIdOfFastestLap;
@@ -54,11 +55,11 @@ public class Race {
         this.driverIdOfFastestLap = driverIdOfFastestLap;
     }
 
-    public List<Driver> getRaceResults() {
+    public List<RaceResult> getRaceResults() {
         return raceResults;
     }
 
-    public void setRaceResults(List<Driver> raceResults) {
+    public void setRaceResults(List<RaceResult> raceResults) {
         this.raceResults = raceResults;
     }
 }

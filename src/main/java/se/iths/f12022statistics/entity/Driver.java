@@ -13,8 +13,6 @@ public class Driver {
     private String name;
     private int age;
 
-    //@ManyToMany
-    //private List<Race> raceList;
 
     public Driver() {
     }
@@ -44,13 +42,7 @@ public class Driver {
         this.age = age;
     }
 
-   /* public List<Race> getRaceList() {
-        return raceList;
-    }
 
-    public void setRaceList(List<Race> raceList) {
-        this.raceList = raceList;
-    }
 
-    */
+
 }
