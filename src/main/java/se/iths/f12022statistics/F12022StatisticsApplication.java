@@ -30,44 +30,20 @@ public class F12022StatisticsApplication {
     public static void main(String[] args) {
         SpringApplication.run(F12022StatisticsApplication.class, args);
 
+
     }
     @EventListener(ApplicationReadyEvent.class)
     // Generate data at start up
     // Method to autofill database with data if empty
     public void fillDatabase(){
 
-        //RedBull
-        teamRepository.save(new Team("RedBull Racing", "RedBull power unit",
-                Stream.of(new Driver("MAX VERSTAPPEN", 23), new Driver("GEORGE RUSSELL", 23)).collect(Collectors.toList()),
-                new Boss("Christian Horner", 50, 7)));
-        //Mercedes
+
+
 
     }
 
 
 
-    /*
-
-    driverRepository.save(new Driver("MAX VERSTAPPEN", 23));
-            driverRepository.save(new Driver("SERGIO PEREZ", 23));
-            driverRepository.save(new Driver("GEORGE RUSSELL", 23));
-            driverRepository.save(new Driver("LEWIS HAMILTON", 23));
-            driverRepository.save(new Driver("VALTTERI BOTTAS", 23));
-            driverRepository.save(new Driver("GIANIOU ZHOU", 23));
-            driverRepository.save(new Driver("SEBASTIAN VETTEL", 23));
-            driverRepository.save(new Driver("LANCE STROLL", 23));
-            driverRepository.save(new Driver("CARLOS SAINZ", 23));
-            driverRepository.save(new Driver("CHARLES LECLERC", 23));
-            driverRepository.save(new Driver("ALEXANDER ALBON", 23));
-            driverRepository.save(new Driver("NIKOLAS LATIFI", 23));
-            driverRepository.save(new Driver("DANIEL RICCIARDO", 23));
-            driverRepository.save(new Driver("LANDO NORRIS", 23));
-            driverRepository.save(new Driver("MICK SCHUMACHER", 23));
-            driverRepository.save(new Driver("KEVIN MAGNUSSEN", 23));
-            driverRepository.save(new Driver("YUKI TSUNODA", 23));
-            driverRepository.save(new Driver("PIERRE GASLY", 23));
-            driverRepository.save(new Driver("ESTEBAN OCON", 23));
-*/
 
 
 }
