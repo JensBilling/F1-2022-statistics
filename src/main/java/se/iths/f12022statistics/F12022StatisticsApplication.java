@@ -14,6 +14,8 @@ import se.iths.f12022statistics.service.TeamService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @SpringBootApplication
 public class F12022StatisticsApplication {
@@ -22,20 +24,32 @@ public class F12022StatisticsApplication {
          this.teamService = teamService;
      }
  */
+
     public static void main(String[] args) {
         SpringApplication.run(F12022StatisticsApplication.class, args);
+
     }
 
     // Generate data at start up
     @Bean
-    public CommandLineRunner fillDb(DriverRepository driverRepository,
-                                    RaceRepository raceRepository,
-                                    TeamRepository teamRepository,
-                                    BossRepository bossRepository,
-                                    RoleRepository roleRepository,
-                                    UserRepository userRepository) {
+    public static CommandLineRunner fillDb(TeamRepository teamRepository) {
         return (args) -> {
-            driverRepository.save(new Driver("MAX VERSTAPPEN", 23));
+
+
+          teamRepository.save(new Team("RedBull Racing", "RedBull power unit",
+                  Stream.of(new Driver("MAX VERSTAPPEN", 23), new Driver("GEORGE RUSSELL", 23)).collect(Collectors.toList()),
+                  new Boss("Christian Horner", 50, 7)));
+
+
+        };
+    }
+    /*
+      List<Driver> redBullDrivers = new ArrayList<>();
+        Driver rbd1 = new Driver("MAX VERSTAPPEN", 23);
+        Driver rbd2 = new Driver("SERGIO PEREZ", 23);
+        redBullDrivers.add(rbd1);
+        redBullDrivers.add(rbd2);
+    driverRepository.save(new Driver("MAX VERSTAPPEN", 23));
             driverRepository.save(new Driver("SERGIO PEREZ", 23));
             driverRepository.save(new Driver("GEORGE RUSSELL", 23));
             driverRepository.save(new Driver("LEWIS HAMILTON", 23));
@@ -54,24 +68,7 @@ public class F12022StatisticsApplication {
             driverRepository.save(new Driver("YUKI TSUNODA", 23));
             driverRepository.save(new Driver("PIERRE GASLY", 23));
             driverRepository.save(new Driver("ESTEBAN OCON", 23));
-
-            List<Driver> redBullDrivers = new ArrayList<>();
-            Driver rbd1 = new Driver("MAX VERSTAPPEN", 23);
-            Driver rbd2 = new Driver("SERGIO PEREZ", 23);
-            redBullDrivers.add(rbd1);
-            redBullDrivers.add(rbd2);
-
-
-
-
-
-            teamRepository.save(new Team("RedBull Racing", "RedBull power unit",
-                    redBullDrivers, new Boss("Christian Horner", 50, 7 )));
-
-
-        };
-    }
-
+*/
     /* Method to autofill database with data if empty
     private final TeamService teamService;
 +
