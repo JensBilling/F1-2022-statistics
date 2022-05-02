@@ -1,18 +1,18 @@
 package se.iths.f12022statistics.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
 
+import javax.persistence.*;
+
+@Setter
+@Getter
 @Entity
+@Table(name = "roles")
 public class Role {
     private Long id;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @Column(length = 60)
+    private String name;
 
-    @Id
-    public Long getId() {
-        return id;
-    }
 }

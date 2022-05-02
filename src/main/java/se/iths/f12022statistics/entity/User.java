@@ -1,7 +1,9 @@
 package se.iths.f12022statistics.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import lombok.Data;
+
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class User {
