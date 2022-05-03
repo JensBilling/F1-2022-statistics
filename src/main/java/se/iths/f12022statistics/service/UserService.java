@@ -29,7 +29,7 @@ public class UserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String usernameOrEmail) throws UsernameNotFoundException {
         User foundUser = userRepository.findByUsernameOrEmail(usernameOrEmail, usernameOrEmail)
                 .orElseThrow(() ->
-                        new UsernameNotFoundException("User not fround wiht username or email:" + usernameOrEmail));
+                        new UsernameNotFoundException("User not fround with username or email:" + usernameOrEmail));
 
         return new org.springframework.security.core.userdetails.User(foundUser.getEmail(), foundUser.getPassword(), mapRoleToAuthorities(foundUser.getRoles()));
     }
