@@ -18,4 +18,7 @@ public class RaceService {
         return raceRepository.save(race);
 
     }
+    public Iterable<Race> getAllRaces(){
+        return raceRepository.findAll();
+    }
 }

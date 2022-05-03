@@ -33,7 +33,7 @@ public class F12022StatisticsApplication {
 
     }
 
-    /*
+
     @EventListener(ApplicationReadyEvent.class)
     // Generate data at start up
     // Method to autofill database with data if empty
@@ -79,6 +79,6 @@ public class F12022StatisticsApplication {
                 Stream.of(new Driver("ESTEBAN OCON", 25), new Driver("FERNANDO ALONSO", 40)).collect(Collectors.toList()),
                 new Boss("OTMAR SZAFNAUER", 63, 0)));
     }
-     */
+
 
 }
