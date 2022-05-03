@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import se.iths.f12022statistics.entity.Race;
 import se.iths.f12022statistics.repository.RaceRepository;
 
+import java.util.List;
+
 @Service
 public class RaceService {
 
@@ -16,7 +18,6 @@ public class RaceService {
 
     public Race addNewRace(Race race) {
         return raceRepository.save(race);
-
     }
     public Iterable<Race> getAllRaces(){
         return raceRepository.findAll();

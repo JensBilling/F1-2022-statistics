@@ -7,7 +7,7 @@ import se.iths.f12022statistics.repository.RaceRepository;
 import se.iths.f12022statistics.service.RaceService;
 
 @RestController
-@RequestMapping("race")
+@RequestMapping("api/race")
 public class RaceController {
 
     private final RaceService raceService;
@@ -16,10 +16,15 @@ public class RaceController {
         this.raceService = raceService;
     }
 
-    @PostMapping("")
+    @PostMapping("add")
     public ResponseEntity<Race> addRace(@RequestBody Race race){
         raceService.addNewRace(race);
         return ResponseEntity.ok(race);
+    }
+
+    @GetMapping("")
+    public ResponseEntity<Iterable<Race>> getAllRaces(){
+        return ResponseEntity.ok(raceService.getAllRaces());
     }
 
 }
