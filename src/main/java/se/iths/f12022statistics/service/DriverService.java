@@ -18,22 +18,22 @@ public class DriverService {
         this.driverRepository = driverRepository;
     }
 
-    public Iterable<Driver> getAllDrivers() {
-        return driverRepository.findAll();
-    }
-
     public Driver addNewDriver(Driver driver){
         driverRepository.save(driver);
         return driver;
     }
 
-    public void DeleteDriverFromDatabase(Long id) {
-        Driver foundDriver = driverRepository.findById(id).orElseThrow(EntityNotFoundException::new);
-        driverRepository.delete(foundDriver);
+    public Iterable<Driver> getAllDrivers() {
+        return driverRepository.findAll();
     }
 
     public Driver getDriverById(Long id) {
         Driver foundDriver = driverRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         return foundDriver;
+    }
+
+    public void DeleteDriverFromDatabase(Long id) {
+        Driver foundDriver = driverRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+        driverRepository.delete(foundDriver);
     }
 }
