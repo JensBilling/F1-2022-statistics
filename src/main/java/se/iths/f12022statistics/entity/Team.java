@@ -19,6 +19,11 @@ public class Team {
     public Team() {
     }
 
+    public Team(String name, String engineManufacturer) {
+        this.name = name;
+        this.engineManufacturer = engineManufacturer;
+    }
+
     public Team(String name, String engineManufacturer, List<Driver> drivers, Boss boss) {
         this.name = name;
         this.engineManufacturer = engineManufacturer;

@@ -39,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/auth/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/races/**", "/api/drivers/**").hasRole("USER")
                 .antMatchers(HttpMethod.POST, "/api/races/**", "/api/drivers/**").hasRole("ADMIN")
-                .antMatchers(HttpMethod.DELETE, "/api/drivers/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/api/drivers/**", "/api/teams/**").hasRole("ADMIN")
                 .anyRequest()
                 .authenticated()
                 .and()
