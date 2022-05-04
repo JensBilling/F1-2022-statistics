@@ -9,6 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import se.iths.f12022statistics.dto.LoginDto;
+import se.iths.f12022statistics.entity.User;
 import se.iths.f12022statistics.repository.RoleRepository;
 import se.iths.f12022statistics.repository.UserRepository;
 
@@ -28,7 +29,17 @@ public class AuthController {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @PostMapping()
+    // Create new user account
+    @PostMapping("signup")
+    public ResponseEntity<String> createNewUser(@RequestBody User user){
+
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        userRepository.save(user);
+        return ResponseEntity.ok("User " + user.getName() + " created.");
+    }
+
+    // test login with JSON
+    @PostMapping("signin")
     public ResponseEntity<String> authenticateUser(@RequestBody LoginDto loginDto) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken
                 (loginDto.getUsernameOrEmail(), loginDto.getPassword()));
