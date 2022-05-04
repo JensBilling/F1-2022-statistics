@@ -38,6 +38,6 @@ public class DriverController {
     @DeleteMapping("")
     public ResponseEntity<String> deleteDriverFromDatabase(@RequestParam("id") Long id){
         driverService.DeleteDriverFromDatabase(id);
-        return ResponseEntity.ok("Driver with id: " + id + " removed from DB");
+        return ResponseEntity.ok("Driver with id: " + id + " deleted from the database.");
     }
 }

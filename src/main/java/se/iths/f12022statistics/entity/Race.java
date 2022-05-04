@@ -20,11 +20,11 @@ public class Race {
     public Race() {
     }
 
-    public Race(String trackName, double trackDistance, Long driverIdOfFastestLap, List<RaceResult> raceResults) {
+
+    public Race(String trackName, double trackDistance, Long driverIdOfFastestLap) {
         this.trackName = trackName;
         this.trackDistance = trackDistance;
         this.driverIdOfFastestLap = driverIdOfFastestLap;
-        this.raceResults = raceResults;
     }
 
     public Long getId() {
