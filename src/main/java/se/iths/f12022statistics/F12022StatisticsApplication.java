@@ -1,19 +1,14 @@
 package se.iths.f12022statistics;
 
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.event.EventListener;
-import se.iths.f12022statistics.entity.Boss;
-import se.iths.f12022statistics.entity.Driver;
-import se.iths.f12022statistics.entity.Team;
+import se.iths.f12022statistics.entity.*;
 import se.iths.f12022statistics.repository.*;
-import se.iths.f12022statistics.service.TeamService;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -22,9 +17,13 @@ public class F12022StatisticsApplication {
 
 
     private final TeamRepository teamRepository;
+    private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
 
-    public F12022StatisticsApplication(TeamRepository teamRepository) {
+    public F12022StatisticsApplication(TeamRepository teamRepository, UserRepository userRepository, RoleRepository roleRepository) {
         this.teamRepository = teamRepository;
+        this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
     }
 
     public static void main(String[] args) {
@@ -78,6 +77,30 @@ public class F12022StatisticsApplication {
         teamRepository.save(new Team("Alpine F1", "Renault F1",
                 Stream.of(new Driver("ESTEBAN OCON", 25), new Driver("FERNANDO ALONSO", 40)).collect(Collectors.toList()),
                 new Boss("OTMAR SZAFNAUER", 63, 0)));
+
+        User userUser = new User("User user", "user", "user@mail.com", "password");
+        User adminUser = new User("Admin user", "admin", "admin@mail.com", "password");
+        Role userRole = new Role("ROLE_USER");
+        Role adminRole = new Role("ROLE_ADMIN");
+
+        Set<Role> userRoleSet = new HashSet<>();
+        Set<Role> adminRoleSet = new HashSet<>();
+
+        roleRepository.save(userRole);
+        roleRepository.save(adminRole);
+        userRepository.save(userUser);
+        userRepository.save(adminUser);
+
+        userRoleSet.add(userRole);
+        adminRoleSet.add(userRole);
+        adminRoleSet.add(adminRole);
+
+        userUser.setRoles(userRoleSet);
+        adminUser.setRoles(adminRoleSet);
+
+        userRepository.save(userUser);
+        userRepository.save(adminUser);
+
     }
 
 
