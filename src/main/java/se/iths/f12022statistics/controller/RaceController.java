@@ -7,7 +7,7 @@ import se.iths.f12022statistics.repository.RaceRepository;
 import se.iths.f12022statistics.service.RaceService;
 
 @RestController
-@RequestMapping("api/race")
+@RequestMapping("api/races")
 public class RaceController {
 
     private final RaceService raceService;
