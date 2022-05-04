@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import se.iths.f12022statistics.entity.Boss;
 import se.iths.f12022statistics.repository.BossRepository;
 
+import javax.persistence.EntityNotFoundException;
+
 @Service
 public class BossService {
 
@@ -17,5 +19,10 @@ public class BossService {
 
     public Iterable<Boss> getAllBosses() {
         return bossRepository.findAll();
+    }
+
+    public Boss getBossById(Long id) {
+        Boss foundBoss = bossRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+        return foundBoss;
     }
 }
