@@ -27,6 +27,13 @@ public class Race {
         this.driverIdOfFastestLap = driverIdOfFastestLap;
     }
 
+    public Race(String trackName, double trackDistance, Long driverIdOfFastestLap, List<RaceResult> raceResults) {
+        this.trackName = trackName;
+        this.trackDistance = trackDistance;
+        this.driverIdOfFastestLap = driverIdOfFastestLap;
+        this.raceResults = raceResults;
+    }
+
     public Long getId() {
         return id;
     }
