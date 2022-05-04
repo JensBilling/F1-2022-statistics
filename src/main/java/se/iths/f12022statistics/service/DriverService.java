@@ -31,4 +31,9 @@ public class DriverService {
         Driver foundDriver = driverRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         driverRepository.delete(foundDriver);
     }
+
+    public Driver getDriverById(Long id) {
+        Driver foundDriver = driverRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+        return foundDriver;
+    }
 }
