@@ -1,20 +1,17 @@
 package se.iths.f12022statistics.responsehandling;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
+@Getter
+@Setter
 public class NotFoundInDatabaseException extends RuntimeException {
 
-    //private String errorDescription = " could not be located in the database: ";
-
-    public NotFoundInDatabaseException(String message) {
-        super(message);
-        // errorDescription = "Id: " + query + errorDescription + databaseTable;
-        //returnResponse(message);
+    public NotFoundInDatabaseException(String error) {
+        super(error);
     }
-
-    private ResponseEntity<String> returnResponse(String message) {
-        return new ResponseEntity(new ErrorMessage(message, HttpStatus.NOT_FOUND), HttpStatus.NOT_FOUND);
-    }
-
 }
+

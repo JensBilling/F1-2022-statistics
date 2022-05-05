@@ -7,6 +7,8 @@ import se.iths.f12022statistics.entity.RaceResult;
 import se.iths.f12022statistics.service.RaceResultService;
 import se.iths.f12022statistics.service.RaceService;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("api/races")
 public class RaceController {
@@ -26,7 +28,7 @@ public class RaceController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Race> getRaceById(@PathVariable Long id) {
+    public ResponseEntity<Optional<Race>> getRaceById(@PathVariable Long id) {
         return ResponseEntity.ok(raceService.getRaceById(id));
     }
 
@@ -64,6 +66,7 @@ public class RaceController {
         return ResponseEntity.ok("Race result added to race");
 
     }
+
 
 
 }

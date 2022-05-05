@@ -4,10 +4,14 @@ import org.springframework.http.HttpStatus;
 
 public class ErrorMessage {
 
-    private String errorDescription;
     private HttpStatus httpStatus;
+    private int httpCode;
+    private String errorDescription;
 
-    public ErrorMessage(String errorDescription, HttpStatus httpStatus) {
+    public ErrorMessage() {
+    }
+
+    public ErrorMessage(String errorDescription, HttpStatus httpStatus, int httpCode) {
         this.errorDescription = errorDescription;
         this.httpStatus = httpStatus;
     }
