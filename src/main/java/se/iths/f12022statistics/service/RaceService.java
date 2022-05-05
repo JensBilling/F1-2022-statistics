@@ -9,6 +9,7 @@ import se.iths.f12022statistics.repository.RaceResultRespository;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RaceService {

@@ -20,14 +20,12 @@ public class F12022StatisticsApplication {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final RaceRepository raceRepository;
-    private final RaceResultRespository raceResultRespository;
 
     public F12022StatisticsApplication(TeamRepository teamRepository, UserRepository userRepository, RoleRepository roleRepository, RaceRepository raceRepository, RaceResultRespository raceResultRespository) {
         this.teamRepository = teamRepository;
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.raceRepository = raceRepository;
-        this.raceResultRespository = raceResultRespository;
     }
 
     public static void main(String[] args) {
