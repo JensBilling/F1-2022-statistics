@@ -25,4 +25,14 @@ public class BossService {
         Boss foundBoss = bossRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         return foundBoss;
     }
+
+    public Boss addNewBoss(Boss boss) {
+        bossRepository.save(boss);
+        return boss;
+    }
+
+    public void deleteBossFromDatabase(Long id) {
+        Boss foundBoss = bossRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+        bossRepository.delete(foundBoss);
+    }
 }

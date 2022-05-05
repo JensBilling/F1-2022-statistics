@@ -1,13 +1,11 @@
 package se.iths.f12022statistics.service;
 
 
-import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.stereotype.Service;
 import se.iths.f12022statistics.entity.Driver;
 import se.iths.f12022statistics.repository.DriverRepository;
 
 import javax.persistence.EntityNotFoundException;
-import java.util.Optional;
 
 @Service
 public class DriverService {
@@ -32,7 +30,7 @@ public class DriverService {
         return foundDriver;
     }
 
-    public void DeleteDriverFromDatabase(Long id) {
+    public void deleteDriverFromDatabase(Long id) {
         Driver foundDriver = driverRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         driverRepository.delete(foundDriver);
     }

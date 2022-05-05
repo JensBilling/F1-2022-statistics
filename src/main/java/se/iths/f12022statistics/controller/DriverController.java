@@ -5,9 +5,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import se.iths.f12022statistics.entity.Driver;
 import se.iths.f12022statistics.service.DriverService;
-import se.iths.f12022statistics.service.RaceService;
-
-import javax.websocket.server.PathParam;
 
 @RestController
 @RequestMapping("api/drivers")
@@ -37,7 +34,7 @@ public class DriverController {
 
     @DeleteMapping("")
     public ResponseEntity<String> deleteDriverFromDatabase(@RequestParam("id") Long id){
-        driverService.DeleteDriverFromDatabase(id);
+        driverService.deleteDriverFromDatabase(id);
         return ResponseEntity.ok("Driver with id: " + id + " deleted from the database.");
     }
 }
