@@ -1,16 +1,11 @@
 package se.iths.f12022statistics.service;
 
 
-import net.bytebuddy.implementation.bytecode.Throw;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import se.iths.f12022statistics.entity.Race;
 import se.iths.f12022statistics.entity.RaceResult;
 import se.iths.f12022statistics.repository.RaceRepository;
 import se.iths.f12022statistics.repository.RaceResultRespository;
-import se.iths.f12022statistics.responsehandling.ErrorMessage;
 import se.iths.f12022statistics.responsehandling.NotFoundInDatabaseException;
 
 import javax.persistence.EntityNotFoundException;

@@ -19,13 +19,13 @@ public class APIExceptionHandler {
         return new ResponseEntity<>(apiException, HttpStatus.NOT_FOUND);
     }
 
-    /*
+
     @ExceptionHandler(value = {NotSignedInException.class})
     public ResponseEntity<Object> handle NotSignedInException(NotSignedInException e) {
         APIException apiException = new APIException("You have to be a signed in user to do that", HttpStatus.UNAUTHORIZED);
 
         return new ResponseEntity<>(apiException, HttpStatus.UNAUTHORIZED);
     }
-     */
+
 
 }
