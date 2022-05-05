@@ -82,6 +82,7 @@ public class F12022StatisticsApplication {
                 Stream.of(new Driver("ESTEBAN OCON", 25), new Driver("FERNANDO ALONSO", 40)).collect(Collectors.toList()),
                 new Boss("OTMAR SZAFNAUER", 63, 0)));
 
+        // Adds user accounts and roles
         User userUser = new User("User user", "user", "user@mail.com", "password");
         User adminUser = new User("Admin user", "admin", "admin@mail.com", "password");
         Role userRole = new Role("ROLE_USER");
@@ -104,6 +105,29 @@ public class F12022StatisticsApplication {
 
         userRepository.save(userUser);
         userRepository.save(adminUser);
+
+        // add race and results
+        raceRepository.save(new Race("Bahrain", 53.3, 16L, Stream.of(
+                        new RaceResult(16L, 1L),
+                        new RaceResult(15L, 2L),
+                        new RaceResult(8L, 3L),
+                        new RaceResult(7L, 4L),
+                        new RaceResult(19L, 5L),
+                        new RaceResult(31L, 6L),
+                        new RaceResult(39L, 7L),
+                        new RaceResult(28L, 8L),
+                        new RaceResult(40L, 9L),
+                        new RaceResult(32L, 10L),
+                        new RaceResult(20L, 11L),
+                        new RaceResult(24L, 12L),
+                        new RaceResult(27L, 13L),
+                        new RaceResult(12L, 14L),
+                        new RaceResult(11L, 15L),
+                        new RaceResult(36L, 16L),
+                        new RaceResult(4L, 17L),
+                        new RaceResult(3L, 18L),
+                        new RaceResult(27L, 19L))
+                .collect(Collectors.toList())));
 
     }
 
