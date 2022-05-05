@@ -10,6 +10,8 @@ import se.iths.f12022statistics.entity.Race;
 import se.iths.f12022statistics.entity.RaceResult;
 import se.iths.f12022statistics.repository.RaceRepository;
 import se.iths.f12022statistics.repository.RaceResultRespository;
+import se.iths.f12022statistics.responsehandling.ErrorMessage;
+import se.iths.f12022statistics.responsehandling.NotFoundInDatabaseException;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
@@ -34,8 +36,12 @@ public class RaceService {
         return raceRepository.findAll();
     }
 
-    public Race getRaceById(Long id) {
-        Race foundRace = raceRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+    public Optional<Race> getRaceById(Long id) {
+
+        Optional<Race> foundRace = raceRepository.findById(id);
+        if (foundRace.isEmpty()) {
+            throw new NotFoundInDatabaseException("Item with that id was not found in the database.");
+        }
         return foundRace;
     }
 
