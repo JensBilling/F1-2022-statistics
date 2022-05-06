@@ -6,10 +6,9 @@ import se.iths.f12022statistics.entity.Driver;
 import se.iths.f12022statistics.entity.Team;
 import se.iths.f12022statistics.repository.DriverRepository;
 import se.iths.f12022statistics.repository.TeamRepository;
-import se.iths.f12022statistics.responsehandling.EditDatabaseRelationException;
+import se.iths.f12022statistics.responsehandling.DeleteDriverFromDatabaseWithTeamRelationException;
 
 import javax.persistence.EntityNotFoundException;
-import java.util.ArrayList;
 
 @Service
 public class DriverService {
@@ -41,7 +40,7 @@ public class DriverService {
         for (Team team : allTeams) {
             for (Driver driver : team.getDrivers()) {
                 if (driver.getId() == id){
-                    throw new EditDatabaseRelationException("You can not delete a driver that is assigned to a team, remove team relation before you try again.");
+                    throw new DeleteDriverFromDatabaseWithTeamRelationException("You can not delete a driver that is assigned to a team, remove team relation before you try again.");
                 }
             }
         }
