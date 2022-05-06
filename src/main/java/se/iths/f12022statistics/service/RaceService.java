@@ -2,12 +2,14 @@ package se.iths.f12022statistics.service;
 
 
 import org.springframework.stereotype.Service;
+import se.iths.f12022statistics.JMS.sender.Sender;
 import se.iths.f12022statistics.entity.Race;
 import se.iths.f12022statistics.entity.RaceResult;
 import se.iths.f12022statistics.repository.RaceRepository;
 import se.iths.f12022statistics.repository.RaceResultRespository;
 import se.iths.f12022statistics.responsehandling.NotFoundInDatabaseException;
 import se.iths.f12022statistics.responsehandling.RaceAlreadyExistsException;
+import org.springframework.jms.core.JmsTemplate;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
@@ -18,19 +20,26 @@ public class RaceService {
 
     private final RaceRepository raceRepository;
     private final RaceResultRespository raceResultRespository;
+    private final JmsTemplate jmsTemplate;
 
-    public RaceService(RaceRepository raceRepository, RaceResultRespository raceResultRespository) {
+    public RaceService(RaceRepository raceRepository, RaceResultRespository raceResultRespository, JmsTemplate jmsTemplate) {
         this.raceRepository = raceRepository;
         this.raceResultRespository = raceResultRespository;
+        this.jmsTemplate = jmsTemplate;
     }
 
     public Race addNewRace(Race race) {
         Iterable<Race> foundRace = raceRepository.findAll();
-        for (Race dbRace: foundRace) {
-            if (dbRace.getTrackName().equals(race.getTrackName())){
+        for (Race dbRace : foundRace) {
+            if (dbRace.getTrackName().equals(race.getTrackName())) {
                 throw new RaceAlreadyExistsException("That race already exists in the database.");
             }
         }
+
+        // JMS here
+        Sender sender = new Sender(jmsTemplate);
+        sender.SendMessage("Added " + race.getTrackName() + " to race database");
+
         return raceRepository.save(race);
     }
 
