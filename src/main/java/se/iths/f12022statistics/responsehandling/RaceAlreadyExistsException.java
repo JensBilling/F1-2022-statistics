@@ -5,9 +5,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class NotSignedInException extends RuntimeException {
+public class RaceAlreadyExistsException extends RuntimeException {
 
-    public NotSignedInException(String error) {
+    public RaceAlreadyExistsException(String error) {
         super(error);
     }
 

@@ -17,11 +17,11 @@ public class APIExceptionHandler {
     }
 
 
-    @ExceptionHandler(value = {NotSignedInException.class})
-    public ResponseEntity<Object> handleNotSignedInException(NotSignedInException e) {
-        APIException apiException = new APIException("You have to be a signed in user to do that", HttpStatus.UNAUTHORIZED);
+    @ExceptionHandler(value = {RaceAlreadyExistsException.class})
+    public ResponseEntity<Object> handleNotSignedInException(RaceAlreadyExistsException e) {
+        APIException apiException = new APIException("That race already exists in the database.", HttpStatus.CONFLICT);
 
-        return new ResponseEntity<>(apiException, HttpStatus.UNAUTHORIZED);
+        return new ResponseEntity<>(apiException, HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(value = {DeleteDriverFromDatabaseWithTeamRelationException.class})
