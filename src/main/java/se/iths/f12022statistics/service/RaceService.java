@@ -38,7 +38,7 @@ public class RaceService {
 
         // JMS here
         Sender sender = new Sender(jmsTemplate);
-        sender.SendMessage("Added " + race.getTrackName() + " to race database");
+        sender.SendMessage(race.getTrackName());
 
         return raceRepository.save(race);
     }
