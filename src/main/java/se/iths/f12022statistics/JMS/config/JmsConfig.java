@@ -32,6 +32,4 @@ public class JmsConfig {
 
         return converter;
     }
-
-
 }
