@@ -6,6 +6,8 @@ import se.iths.f12022statistics.entity.Boss;
 import se.iths.f12022statistics.entity.Team;
 import se.iths.f12022statistics.service.BossService;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("api/bosses")
 public class BossController {
@@ -28,7 +30,7 @@ public class BossController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Boss> getBossById(@PathVariable Long id) {
+    public ResponseEntity<Optional<Boss>> getBossById(@PathVariable Long id) {
         return ResponseEntity.ok(bossService.getBossById(id));
     }
     @DeleteMapping("")

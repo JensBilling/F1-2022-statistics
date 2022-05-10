@@ -8,7 +8,7 @@ import se.iths.f12022statistics.entity.RaceResult;
 import se.iths.f12022statistics.repository.RaceRepository;
 import se.iths.f12022statistics.repository.RaceResultRespository;
 import se.iths.f12022statistics.responsehandling.NotFoundInDatabaseException;
-import se.iths.f12022statistics.responsehandling.RaceAlreadyExistsException;
+import se.iths.f12022statistics.responsehandling.EntityAlreadyExistsException;
 import org.springframework.jms.core.JmsTemplate;
 
 import javax.persistence.EntityNotFoundException;
@@ -32,7 +32,7 @@ public class RaceService {
         Iterable<Race> foundRace = raceRepository.findAll();
         for (Race dbRace : foundRace) {
             if (dbRace.getTrackName().equals(race.getTrackName())) {
-                throw new RaceAlreadyExistsException("That race already exists in the database.");
+                throw new EntityAlreadyExistsException("That race already exists in the database.");
             }
         }
 

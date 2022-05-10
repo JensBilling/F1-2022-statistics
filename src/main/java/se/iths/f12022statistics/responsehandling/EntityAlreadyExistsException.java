@@ -5,9 +5,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class RaceAlreadyExistsException extends RuntimeException {
+public class EntityAlreadyExistsException extends RuntimeException {
 
-    public RaceAlreadyExistsException(String error) {
+    public EntityAlreadyExistsException(String error) {
         super(error);
     }
 
