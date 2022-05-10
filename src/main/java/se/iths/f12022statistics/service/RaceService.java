@@ -49,27 +49,36 @@ public class RaceService {
 
     public Optional<Race> getRaceById(Long id) {
 
+        Optional<Race> foundRace = retrieveRaceFromDB(id);
+        return foundRace;
+    }
+
+    public void deleteRaceFromDatabase(Long id) {
+        Optional<Race> foundRace = retrieveRaceFromDB(id);
+        raceRepository.delete(foundRace.get());
+    }
+
+
+    public void addRaceResultToRace(Long raceId, Long raceResultId) {
+        Optional<Race> foundRace = retrieveRaceFromDB(raceId);
+        Optional<RaceResult> foundRaceResult = raceResultRespository.findById(raceResultId);
+
+        if (foundRace.isEmpty() || foundRaceResult.isEmpty()) {
+            throw new NotFoundInDatabaseException("Race or RaceResult with that id was not found in the database.");
+        }
+
+        List<RaceResult> foundResultList = foundRace.get().getRaceResults();
+        foundResultList.add(foundRaceResult.get());
+        foundRace.get().setRaceResults(foundResultList);
+
+        raceRepository.save(foundRace.get());
+    }
+
+    private Optional<Race> retrieveRaceFromDB(Long id) {
         Optional<Race> foundRace = raceRepository.findById(id);
         if (foundRace.isEmpty()) {
             throw new NotFoundInDatabaseException("Item with that id was not found in the database.");
         }
         return foundRace;
-    }
-
-    public void deleteRaceFromDatabase(Long id) {
-        Race foundRace = raceRepository.findById(id).orElseThrow(EntityNotFoundException::new);
-        raceRepository.delete(foundRace);
-    }
-
-
-    public void addRaceResultToRace(Long raceId, Long raceResultId) {
-        Race foundRace = raceRepository.findById(raceId).orElseThrow(EntityNotFoundException::new);
-        RaceResult foundRaceResult = raceResultRespository.findById(raceResultId).orElseThrow(EntityNotFoundException::new);
-
-        List<RaceResult> foundResultList = foundRace.getRaceResults();
-        foundResultList.add(foundRaceResult);
-        foundRace.setRaceResults(foundResultList);
-
-        raceRepository.save(foundRace);
     }
 }
