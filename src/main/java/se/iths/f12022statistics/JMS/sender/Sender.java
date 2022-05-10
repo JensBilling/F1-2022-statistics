@@ -22,7 +22,7 @@ public class Sender {
         System.out.println("Sending JMS to ActiveMQ");
 
         // Message object not in use
-        // MessageObject messageObject = new MessageObject(UUID.randomUUID(), message, LocalDateTime.now());
+         // MessageObject messageObject = new MessageObject(UUID.randomUUID(), message, LocalDateTime.now());
         jmsTemplate.convertAndSend(JmsConfig.F12022STATS_QUEUE, message);
     }
 

@@ -63,8 +63,13 @@ public class RaceService {
         Optional<Race> foundRace = retrieveRaceFromDB(raceId);
         Optional<RaceResult> foundRaceResult = raceResultRespository.findById(raceResultId);
 
-        if (foundRace.isEmpty() || foundRaceResult.isEmpty()) {
-            throw new NotFoundInDatabaseException("Race or RaceResult with that id was not found in the database.");
+        if (foundRaceResult.isEmpty()) {
+            throw new NotFoundInDatabaseException("RaceResult with that id was not found in the database.");
+        }
+        for (RaceResult raceResult : foundRace.get().getRaceResults()) {
+            if (raceResult.getId() == foundRaceResult.get().getId()){
+                throw new EntityAlreadyExistsException("That race result already exists in the race.");
+            }
         }
 
         List<RaceResult> foundResultList = foundRace.get().getRaceResults();
@@ -77,7 +82,7 @@ public class RaceService {
     private Optional<Race> retrieveRaceFromDB(Long id) {
         Optional<Race> foundRace = raceRepository.findById(id);
         if (foundRace.isEmpty()) {
-            throw new NotFoundInDatabaseException("Item with that id was not found in the database.");
+            throw new NotFoundInDatabaseException("Race with that id was not found in the database.");
         }
         return foundRace;
     }
