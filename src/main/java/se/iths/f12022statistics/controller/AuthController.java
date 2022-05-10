@@ -12,6 +12,7 @@ import se.iths.f12022statistics.dto.LoginDto;
 import se.iths.f12022statistics.entity.User;
 import se.iths.f12022statistics.repository.RoleRepository;
 import se.iths.f12022statistics.repository.UserRepository;
+import se.iths.f12022statistics.service.UserService;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -21,21 +22,21 @@ public class AuthController {
     private UserRepository userRepository;
     private RoleRepository roleRepository;
     private PasswordEncoder passwordEncoder;
+    private UserService userService;
 
-    public AuthController(AuthenticationManager authenticationManager, UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder) {
+    public AuthController(AuthenticationManager authenticationManager, UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder, UserService userService) {
         this.authenticationManager = authenticationManager;
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
+        this.userService = userService;
     }
 
     // Create new user account
     @PostMapping("signup")
     public ResponseEntity<String> createNewUser(@RequestBody User user){
-
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
-        return ResponseEntity.ok("User " + user.getName() + " created.");
+        User newUser = userService.createNewUser(user, passwordEncoder);
+        return ResponseEntity.ok("User " + newUser.getUsername() + " created.");
     }
 
     // test login with JSON
