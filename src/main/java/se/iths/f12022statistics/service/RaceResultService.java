@@ -4,8 +4,11 @@ import org.springframework.stereotype.Service;
 import se.iths.f12022statistics.entity.Race;
 import se.iths.f12022statistics.entity.RaceResult;
 import se.iths.f12022statistics.repository.RaceResultRespository;
+import se.iths.f12022statistics.responsehandling.EntityAlreadyExistsException;
+import se.iths.f12022statistics.responsehandling.NotFoundInDatabaseException;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.Optional;
 
 @Service
 public class RaceResultService {
@@ -16,15 +19,14 @@ public class RaceResultService {
         this.raceResultRespository = raceResultRespository;
     }
 
-
     public RaceResult createNewRaceResult(RaceResult raceResult) {
+        Iterable<RaceResult> foundRaceResult = raceResultRespository.findAll();
+        for (RaceResult dbRaceResult : foundRaceResult) {
+            if (dbRaceResult.getDriverId() == raceResult.getDriverId()) {
+                throw new EntityAlreadyExistsException("That result is already in the database.");
+            }
+        }
         return raceResultRespository.save(raceResult);
     }
-
-    public RaceResult getRaceResultById(Long id) {
-        RaceResult foundRace = raceResultRespository.findById(id).orElseThrow(EntityNotFoundException::new);
-        return foundRace;
-    }
-
 }
 

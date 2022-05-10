@@ -50,10 +50,6 @@ public class RaceController {
 
     }
 
-    @GetMapping("raceresult/{id}")
-    public ResponseEntity<RaceResult> getRaceResultById(@PathVariable Long id) {
-        return ResponseEntity.ok(raceResultService.getRaceResultById(id));
-    }
 
     @PostMapping("addraceresulttorace")
     public ResponseEntity<String> addRaceResultToRace(@RequestParam("raceid") Long raceId, @RequestParam("resultid") Long raceResultid) {
