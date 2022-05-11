@@ -1,8 +1,9 @@
 package se.iths.f12022statistics.repository;
 
 import org.springframework.data.repository.CrudRepository;
-import se.iths.f12022statistics.entity.Race;
+import org.springframework.stereotype.Repository;
 import se.iths.f12022statistics.entity.RaceResult;
 
-public interface RaceResultRespository extends CrudRepository<RaceResult, Long> {
+@Repository
+public interface RaceResultRepository extends CrudRepository<RaceResult, Long> {
 }

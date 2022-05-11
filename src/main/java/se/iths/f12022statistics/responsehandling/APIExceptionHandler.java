@@ -20,12 +20,11 @@ public class APIExceptionHandler {
     @ExceptionHandler(value = {EntityAlreadyExistsException.class})
     public ResponseEntity<Object> handleNotSignedInException(EntityAlreadyExistsException e) {
         APIException apiException = new APIException("That entity already exists in the database.", HttpStatus.CONFLICT);
-
         return new ResponseEntity<>(apiException, HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(value = {DeleteDriverFromDatabaseWithTeamRelationException.class})
-    public ResponseEntity<Object> handleEditDatabaseRelationException(DeleteDriverFromDatabaseWithTeamRelationException e){
+    public ResponseEntity<Object> handleEditDatabaseRelationException(DeleteDriverFromDatabaseWithTeamRelationException e) {
         APIException apiException = new APIException("You can not delete a driver that is assigned to a team, remove team relation before you try again.", HttpStatus.BAD_REQUEST);
         return new ResponseEntity<>(apiException, HttpStatus.BAD_REQUEST);
     }

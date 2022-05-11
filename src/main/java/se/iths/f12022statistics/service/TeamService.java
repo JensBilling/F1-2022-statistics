@@ -11,6 +11,7 @@ import se.iths.f12022statistics.repository.TeamRepository;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TeamService {
@@ -34,14 +35,9 @@ public class TeamService {
         return foundTeam;
     }
 
-    public Team addNewTeam(Team team) {
-        teamRepository.save(team);
-        return team;
-    }
-
     public void deleteTeamFromDatabase(Long id) {
-        Team foundTeam = teamRepository.findById(id).orElseThrow(EntityNotFoundException::new);
-        teamRepository.delete(foundTeam);
+        Optional<Team> foundTeam = retrieveTeam(id);
+        teamRepository.delete(foundTeam.get());
     }
 
     public String addBossToTeam(Long teamId, Long bossId) {
@@ -60,5 +56,13 @@ public class TeamService {
         foundTeam.setDrivers(foundDriverList);
         teamRepository.save(foundTeam);
         return foundDriver.getName();
+    }
+
+    private Optional<Team> retrieveTeam(Long id) {
+        Optional<Team> foundTeam = teamRepository.findById(id);
+        if (foundTeam.isEmpty()) {
+            throw new NotFoundInDatabaseException("No team found with that id in database");
+        }
+        return foundTeam;
     }
 }

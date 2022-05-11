@@ -17,29 +17,29 @@ public class TeamController {
     }
 
     @GetMapping("")
-    public ResponseEntity<Iterable<Team>> getAllTeams(){
+    public ResponseEntity<Iterable<Team>> getAllTeams() {
         return ResponseEntity.ok(teamService.getAllTeams());
     }
 
     @GetMapping("{id}")
     public ResponseEntity<Team> getTeamById(@PathVariable Long id) {
-        return ResponseEntity.ok(teamService.getDriverById(id));
+        return ResponseEntity.ok(teamService.getTeamById(id));
     }
 
     @PostMapping("")
-    public ResponseEntity<Team> addNewTeam(@RequestBody Team team){
+    public ResponseEntity<Team> addNewTeam(@RequestBody Team team) {
         teamService.addNewTeam(team);
         return ResponseEntity.ok(team);
     }
 
     @DeleteMapping("")
-    public ResponseEntity<String> deleteTeamFromDatabase(@RequestParam("id") Long id){
+    public ResponseEntity<String> deleteTeamFromDatabase(@RequestParam("id") Long id) {
         teamService.deleteTeamFromDatabase(id);
         return ResponseEntity.ok("Team with id: " + id + " removed from DB");
     }
 
     @PostMapping("addbosstoteam")
-    public ResponseEntity<String> addBossToTeam(@RequestParam("teamid") Long teamId, @RequestParam("bossid") Long bossId){
+    public ResponseEntity<String> addBossToTeam(@RequestParam("teamid") Long teamId, @RequestParam("bossid") Long bossId) {
         String bossName = teamService.addBossToTeam(teamId, bossId);
         return ResponseEntity.ok(bossName + " added to team as boss!");
     }

@@ -1,6 +1,5 @@
 package se.iths.f12022statistics.controller;
 
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import se.iths.f12022statistics.entity.Driver;
@@ -17,7 +16,7 @@ public class DriverController {
     }
 
     @GetMapping("")
-    public ResponseEntity<Iterable<Driver>> getAllDriver(){
+    public ResponseEntity<Iterable<Driver>> getAllDriver() {
         return ResponseEntity.ok(driverService.getAllDrivers());
     }
 
@@ -27,13 +26,13 @@ public class DriverController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Driver> addNewDriver(@RequestBody Driver driver){
+    public ResponseEntity<Driver> addNewDriver(@RequestBody Driver driver) {
         driverService.addNewDriver(driver);
         return ResponseEntity.ok(driver);
     }
 
     @DeleteMapping("")
-    public ResponseEntity<String> deleteDriverFromDatabase(@RequestParam("id") Long id){
+    public ResponseEntity<String> deleteDriverFromDatabase(@RequestParam("id") Long id) {
         driverService.deleteDriverFromDatabase(id);
         return ResponseEntity.ok("Driver with id: " + id + " deleted from the database.");
     }

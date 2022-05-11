@@ -47,22 +47,14 @@ public class RaceController {
     public ResponseEntity<RaceResult> createRaceResult(@RequestBody RaceResult raceResult) {
         raceResultService.createNewRaceResult(raceResult);
         return ResponseEntity.ok(raceResult);
-
     }
 
 
     @PostMapping("addraceresulttorace")
     public ResponseEntity<String> addRaceResultToRace(@RequestParam("raceid") Long raceId, @RequestParam("resultid") Long raceResultid) {
-
-        // Race foundRace = raceService.getRaceById(raceId);
-        // RaceResult foundRaceResult = raceResultService.getRaceResultById(raceResultid);
-        // add nullchecks for race and raceresults
-
         raceService.addRaceResultToRace(raceId, raceResultid);
         return ResponseEntity.ok("Race result added to race");
-
     }
-
 
 
 }

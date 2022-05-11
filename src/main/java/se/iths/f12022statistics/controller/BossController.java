@@ -3,7 +3,6 @@ package se.iths.f12022statistics.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import se.iths.f12022statistics.entity.Boss;
-import se.iths.f12022statistics.entity.Team;
 import se.iths.f12022statistics.service.BossService;
 
 import java.util.Optional;
@@ -33,8 +32,9 @@ public class BossController {
     public ResponseEntity<Optional<Boss>> getBossById(@PathVariable Long id) {
         return ResponseEntity.ok(bossService.getBossById(id));
     }
+
     @DeleteMapping("")
-    public ResponseEntity<String> deleteBossFromDatabase(@RequestParam("id") Long id){
+    public ResponseEntity<String> deleteBossFromDatabase(@RequestParam("id") Long id) {
         bossService.deleteBossFromDatabase(id);
         return ResponseEntity.ok("Boss with id: " + id + " deleted from the database.");
 

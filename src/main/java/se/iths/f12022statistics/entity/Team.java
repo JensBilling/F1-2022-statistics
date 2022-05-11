@@ -11,9 +11,9 @@ public class Team {
     private Long id;
     private String name;
     private String engineManufacturer;
-    @OneToMany(cascade=CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Driver> drivers;
-    @OneToOne(cascade=CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     private Boss boss;
 
     public Team() {

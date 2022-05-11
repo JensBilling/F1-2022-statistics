@@ -13,7 +13,6 @@ public class Boss {
     private int age;
     private int yearsAsTeamBoss;
 
-
     public Boss() {
     }
 
@@ -21,7 +20,6 @@ public class Boss {
         this.name = name;
         this.age = age;
         this.yearsAsTeamBoss = yearsAsTeamBoss;
-
     }
 
     public Long getId() {

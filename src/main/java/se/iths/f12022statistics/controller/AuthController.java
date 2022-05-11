@@ -34,7 +34,7 @@ public class AuthController {
 
     // Create new user account
     @PostMapping("signup")
-    public ResponseEntity<String> createNewUser(@RequestBody User user){
+    public ResponseEntity<String> createNewUser(@RequestBody User user) {
         User newUser = userService.createNewUser(user, passwordEncoder);
         return ResponseEntity.ok("User " + newUser.getUsername() + " created.");
     }

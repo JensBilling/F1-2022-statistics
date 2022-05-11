@@ -25,6 +25,15 @@ public class DriverService {
         this.teamRepository = teamRepository;
     }
 
+    public Iterable<Driver> getAllDrivers() {
+        return driverRepository.findAll();
+    }
+
+    public Driver getDriverById(Long id) {
+        Optional<Driver> foundDriver = retrieveDriverFromDB(id);
+        return foundDriver.get();
+    }
+
     public Driver addNewDriver(Driver driver) {
         Iterable<Driver> foundDriver = driverRepository.findAll();
         for (Driver dbDriver : foundDriver) {
@@ -34,15 +43,6 @@ public class DriverService {
         }
         driverRepository.save(driver);
         return driver;
-    }
-
-    public Iterable<Driver> getAllDrivers() {
-        return driverRepository.findAll();
-    }
-
-    public Driver getDriverById(Long id) {
-        Optional<Driver> foundDriver = retrieveDriverFromDB(id);
-        return foundDriver.get();
     }
 
     public void deleteDriverFromDatabase(Long id) {

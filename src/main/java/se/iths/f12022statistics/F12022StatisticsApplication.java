@@ -21,7 +21,7 @@ public class F12022StatisticsApplication {
     private final RoleRepository roleRepository;
     private final RaceRepository raceRepository;
 
-    public F12022StatisticsApplication(TeamRepository teamRepository, UserRepository userRepository, RoleRepository roleRepository, RaceRepository raceRepository, RaceResultRespository raceResultRespository) {
+    public F12022StatisticsApplication(TeamRepository teamRepository, UserRepository userRepository, RoleRepository roleRepository, RaceRepository raceRepository, RaceResultRepository raceResultRespository) {
         this.teamRepository = teamRepository;
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;

@@ -1,18 +1,16 @@
 package se.iths.f12022statistics.entity;
 
 import javax.persistence.*;
-import java.util.List;
+
 
 @Entity
 public class Driver {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
     private int age;
-
 
     public Driver() {
     }
@@ -41,8 +39,6 @@ public class Driver {
     public void setAge(int age) {
         this.age = age;
     }
-
-
 
 
 }

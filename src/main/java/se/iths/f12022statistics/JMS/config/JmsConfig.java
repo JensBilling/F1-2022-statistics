@@ -18,7 +18,7 @@ public class JmsConfig {
     public static final String F12022STATS_QUEUE = "f1-2022-queue";
 
     @Bean
-    public MessageConverter messageConverter(){
+    public MessageConverter messageConverter() {
         MappingJackson2MessageConverter converter = new MappingJackson2MessageConverter();
         converter.setTargetType(MessageType.TEXT);
         converter.setTypeIdPropertyName("_type");
