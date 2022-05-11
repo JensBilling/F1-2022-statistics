@@ -11,7 +11,6 @@ import se.iths.f12022statistics.responsehandling.NotFoundInDatabaseException;
 import se.iths.f12022statistics.responsehandling.EntityAlreadyExistsException;
 import org.springframework.jms.core.JmsTemplate;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,19 +27,8 @@ public class RaceService {
         this.jmsTemplate = jmsTemplate;
     }
 
-    public Race addNewRace(Race race) {
-        Iterable<Race> foundRace = raceRepository.findAll();
-        for (Race dbRace : foundRace) {
-            if (dbRace.getTrackName().equals(race.getTrackName())) {
-                throw new EntityAlreadyExistsException("That race already exists in the database.");
-            }
-        }
-
-        // JMS here
-        Sender sender = new Sender(jmsTemplate);
-        sender.SendMessage(race.getTrackName());
-
-        return raceRepository.save(race);
+    public Iterable<Race> getAllRaces() {
+        return raceRepository.findAll();
     }
 
     public Optional<Race> getRaceById(Long id) {
@@ -64,7 +52,6 @@ public class RaceService {
         Optional<Race> foundRace = retrieveRaceFromDB(id);
         raceRepository.delete(foundRace.get());
     }
-
 
     public void addRaceResultToRace(Long raceId, Long raceResultId) {
         Optional<Race> foundRace = retrieveRaceFromDB(raceId);

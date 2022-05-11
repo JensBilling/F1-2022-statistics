@@ -7,7 +7,6 @@ import se.iths.f12022statistics.repository.BossRepository;
 import se.iths.f12022statistics.responsehandling.EntityAlreadyExistsException;
 import se.iths.f12022statistics.responsehandling.NotFoundInDatabaseException;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
 
 @Service

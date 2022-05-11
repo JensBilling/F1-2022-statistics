@@ -1,6 +1,5 @@
 package se.iths.f12022statistics.service;
 
-
 import org.springframework.stereotype.Service;
 import se.iths.f12022statistics.entity.Boss;
 import se.iths.f12022statistics.entity.Driver;
@@ -8,8 +7,8 @@ import se.iths.f12022statistics.entity.Team;
 import se.iths.f12022statistics.repository.BossRepository;
 import se.iths.f12022statistics.repository.DriverRepository;
 import se.iths.f12022statistics.repository.TeamRepository;
-
-import javax.persistence.EntityNotFoundException;
+import se.iths.f12022statistics.responsehandling.EntityAlreadyExistsException;
+import se.iths.f12022statistics.responsehandling.NotFoundInDatabaseException;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,9 +29,21 @@ public class TeamService {
         return teamRepository.findAll();
     }
 
-    public Team getDriverById(Long id) {
-        Team foundTeam = teamRepository.findById(id).orElseThrow(EntityNotFoundException::new);
-        return foundTeam;
+    public Team getTeamById(Long id) {
+        Optional<Team> foundTeam = retrieveTeam(id);
+        return foundTeam.get();
+    }
+
+    public Team addNewTeam(Team team) {
+
+        Iterable<Team> foundTeam = teamRepository.findAll();
+        for (Team dbTeam : foundTeam) {
+            if (dbTeam.getName().equals(team.getName())) {
+                throw new EntityAlreadyExistsException("That team already exists in the database.");
+            }
+        }
+        teamRepository.save(team);
+        return team;
     }
 
     public void deleteTeamFromDatabase(Long id) {
@@ -41,21 +52,30 @@ public class TeamService {
     }
 
     public String addBossToTeam(Long teamId, Long bossId) {
-        Team foundTeam = teamRepository.findById(teamId).orElseThrow(EntityNotFoundException::new);
-        Boss foundBoss = bossRepository.findById(bossId).orElseThrow(EntityNotFoundException::new);
-        foundTeam.setBoss(foundBoss);
-        teamRepository.save(foundTeam);
-        return foundBoss.getName();
+        Optional<Team> foundTeam = retrieveTeam(teamId);
+        Optional<Boss> foundBoss = bossRepository.findById(bossId);
+        if (foundBoss.isEmpty()) {
+            throw new NotFoundInDatabaseException("No boss with that id found in database");
+        }
+
+        foundTeam.get().setBoss(foundBoss.get());
+        teamRepository.save(foundTeam.get());
+        return foundBoss.get().getName();
     }
 
     public String addDriverToTeam(Long teamId, Long driverId) {
-        Team foundTeam = teamRepository.findById(teamId).orElseThrow(EntityNotFoundException::new);
-        Driver foundDriver = driverRepository.findById(driverId).orElseThrow(EntityNotFoundException::new);
-        List<Driver> foundDriverList = foundTeam.getDrivers();
-        foundDriverList.add(foundDriver);
-        foundTeam.setDrivers(foundDriverList);
-        teamRepository.save(foundTeam);
-        return foundDriver.getName();
+        Optional<Team> foundTeam = retrieveTeam(teamId);
+        Optional<Driver> foundDriver = driverRepository.findById(driverId);
+
+        if (foundDriver.isEmpty()) {
+            throw new NotFoundInDatabaseException("No driver with that id found in database");
+        }
+
+        List<Driver> foundDriverList = foundTeam.get().getDrivers();
+        foundDriverList.add(foundDriver.get());
+        foundTeam.get().setDrivers(foundDriverList);
+        teamRepository.save(foundTeam.get());
+        return foundDriver.get().getName();
     }
 
     private Optional<Team> retrieveTeam(Long id) {

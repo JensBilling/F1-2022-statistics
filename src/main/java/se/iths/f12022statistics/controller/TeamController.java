@@ -1,6 +1,5 @@
 package se.iths.f12022statistics.controller;
 
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import se.iths.f12022statistics.entity.Team;

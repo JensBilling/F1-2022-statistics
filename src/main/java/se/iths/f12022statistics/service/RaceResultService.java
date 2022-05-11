@@ -1,14 +1,10 @@
 package se.iths.f12022statistics.service;
 
 import org.springframework.stereotype.Service;
-import se.iths.f12022statistics.entity.Race;
 import se.iths.f12022statistics.entity.RaceResult;
 import se.iths.f12022statistics.repository.RaceResultRepository;
 import se.iths.f12022statistics.responsehandling.EntityAlreadyExistsException;
-import se.iths.f12022statistics.responsehandling.NotFoundInDatabaseException;
 
-import javax.persistence.EntityNotFoundException;
-import java.util.Optional;
 
 @Service
 public class RaceResultService {

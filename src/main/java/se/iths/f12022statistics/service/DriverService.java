@@ -1,8 +1,6 @@
 package se.iths.f12022statistics.service;
 
-
 import org.springframework.stereotype.Service;
-import se.iths.f12022statistics.entity.Boss;
 import se.iths.f12022statistics.entity.Driver;
 import se.iths.f12022statistics.entity.Team;
 import se.iths.f12022statistics.repository.DriverRepository;
@@ -11,7 +9,6 @@ import se.iths.f12022statistics.responsehandling.DeleteDriverFromDatabaseWithTea
 import se.iths.f12022statistics.responsehandling.EntityAlreadyExistsException;
 import se.iths.f12022statistics.responsehandling.NotFoundInDatabaseException;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
 
 @Service

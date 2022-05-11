@@ -1,6 +1,5 @@
 package se.iths.f12022statistics.service;
 
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,7 +12,6 @@ import se.iths.f12022statistics.entity.User;
 import se.iths.f12022statistics.repository.RoleRepository;
 import se.iths.f12022statistics.repository.UserRepository;
 import se.iths.f12022statistics.responsehandling.EntityAlreadyExistsException;
-
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Optional;
@@ -24,12 +22,10 @@ import java.util.stream.Collectors;
 public class UserService implements UserDetailsService {
 
     private UserRepository userRepository;
-
     private RoleRepository roleRepository;
 
     public UserService(UserRepository userRepository, RoleRepository roleRepository) {
         this.userRepository = userRepository;
-
         this.roleRepository = roleRepository;
     }
 
@@ -67,7 +63,5 @@ public class UserService implements UserDetailsService {
 
         return user;
     }
-
-
 }
 
